@@ -1,0 +1,45 @@
+# Etapa de construcción
+FROM node:18.18 as build
+
+WORKDIR /app
+
+# Copia los archivos necesarios e instala dependencias
+COPY . .
+
+RUN npm install
+
+# Define las variables de entorno
+# ENV REACT_APP_API=http://172.16.93.82:8009/api/v1 ANTIGUA API
+ ENV REACT_APP_API=https://cas-test.ciplima.com:8009/api/v1 
+#  ENV REACT_APP_WEB_SOCKET=ws://cas-test.ciplima.com:8009/websocket
+ENV REACT_APP_WEB_SOCKET=ws://172.16.93.82:8009/websocket
+
+# Compila la aplicación React
+RUN npm run build:test
+
+# Etapa de producción
+FROM httpd:2.4
+
+COPY cas.crt /usr/local/apache2/conf/certificado.crt
+COPY cas.key /usr/local/apache2/conf/clave_privada.key
+
+# Actualiza la configuración de Apache para habilitar SSL
+RUN sed -i '/#LoadModule ssl_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
+RUN echo "Listen 443" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "LoadModule socache_shmcb_module modules/mod_socache_shmcb.so" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "LoadModule ssl_module modules/mod_ssl.so" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "<VirtualHost *:443>" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "    SSLEngine on" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "    SSLCertificateFile /usr/local/apache2/conf/certificado.crt" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "    SSLCertificateKeyFile /usr/local/apache2/conf/clave_privada.key" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "</VirtualHost>" >> /usr/local/apache2/conf/httpd.conf
+
+# Copia los archivos compilados al directorio del servidor httpd
+COPY --from=build /app/build/ /usr/local/apache2/htdocs/
+
+# Expone el puerto
+EXPOSE 80
+EXPOSE 443
+
+# Comando para iniciar httpd
+CMD ["httpd-foreground"]

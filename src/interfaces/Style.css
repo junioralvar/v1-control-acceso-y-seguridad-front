@@ -1,0 +1,16 @@
+/* .bg-card-ingresos {
+  background-color: #f4f4f4 !important;
+} */
+.borde-input {
+  border-radius: 25px !important;
+}
+.plr {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+.insert-icon {
+  position: fixed !important;
+  bottom: 30px;
+  right: 50px;
+  z-index: 1000 !important;
+}

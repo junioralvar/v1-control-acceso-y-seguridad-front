@@ -1,0 +1,39 @@
+/* DESARROLLO */
+/* navbar */
+.css-1191obr-MuiPaper-root-MuiAppBar-root {
+  background-color: white !important;
+  color: rgb(0, 0, 0) !important;
+}
+.css-19z1ozs-MuiPaper-root-MuiAppBar-root {
+  background-color: white !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+/* LATERAL */
+.css-12i7wg6-MuiPaper-root-MuiDrawer-paper {
+  background-color: #2a3042 !important;
+  color: white !important;
+}
+/* PROD */
+.css-i6s8oy {
+  background-color: white !important;
+  color: rgb(0, 0, 0) !important;
+}
+.css-1l8j5k8 {
+  background-color: #2a3042 !important;
+  color: white !important;
+}
+
+.text-hover:hover {
+  color: rgb(224, 177, 25) !important;
+  text-decoration: overline !important;
+}
+
+.selected-option .text-hover,
+.selected-option .MuiListItemIcon-root {
+  color: rgb(224, 177, 25) !important;
+}
+
+/* .colortest{
+  color:#f8e6e2;
+} */
