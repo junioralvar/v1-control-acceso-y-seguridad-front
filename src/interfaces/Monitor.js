@@ -11,7 +11,7 @@ import { TablaMui } from '../componentes/tabla/TablaMui'
 
 export const Monitor = () => {
   const { tokenVigente } = useGlobalState()
-  const [persona, setPersona] = useState()
+  const [persona, setPersona] = useState([])
 
   if (tokenVigente === false) {
     alert('SESIÓN EXPIRADA! ... VUELVA A INICIAR SESIÓN')
