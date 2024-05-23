@@ -32,7 +32,6 @@ export const Ingresos = ({ checkedSwitch }) => {
   const [tipoDocumento, setTipoDocumento] = useState([])
   const [tipoActivo, setTipoActivo] = useState([])
   const [buscarDocumento, setBuscarDocumento] = useState('')
-
   const [foco, setFoco] = useState(true)
   const [inputsActivos, setInputsActivos] = useState([])
   const [historialEncontrado, setHistorialEncontrado] = useState(false)
@@ -43,10 +42,14 @@ export const Ingresos = ({ checkedSwitch }) => {
   const [enlistado, setEnlistado] = useState(false)
   const [disabledButton, setDisabledButton] = useState(true)
   const [isLoading, setIsLoading] = useState()
-
   const [data, setData] = useState()
-
   const [responseBusqueda, setResponseBusqueda] = useState('')
+
+  useEffect(() => {
+    if (tipoDocumentoId === 1 && buscarDocumento.length === 8) {
+      findAllPersonaDocumento()
+    }
+  }, [buscarDocumento])
 
   useEffect(() => {
     if (data) {
@@ -65,6 +68,7 @@ export const Ingresos = ({ checkedSwitch }) => {
       setData()
     }
   }, [data, checkedSwitch])
+  console.log('buscarDocumento ', buscarDocumento)
 
   useEffect(() => {
     if (checkedSwitch) {

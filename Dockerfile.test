@@ -11,6 +11,8 @@ RUN npm install
 # Define las variables de entorno
 ENV REACT_APP_API=http://172.16.93.82:8009/api/v1 
 ENV REACT_APP_WEB_SOCKET=ws://172.16.93.82:8009/websocket
+# ENV REACT_APP_API=https://cas-backend.cdlima.org.pe/api/v1
+# ENV REACT_APP_WEB_SOCKET=wss://cas-backend.cdlima.org.pe/websocket
 
 # Compila la aplicación React
 RUN npm run build:test
