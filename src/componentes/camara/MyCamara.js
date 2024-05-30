@@ -13,12 +13,19 @@ export const CameraComponent = ({
   setPathRelativo,
   enlistado,
   setFotoTomada,
+  capturarFoto,
 }) => {
   const { mostrarFoto, setMostrarFoto } = useGlobalState()
   const [photo, setPhoto] = useState(null)
   const [cameras, setCameras] = useState([])
   const [currentCamera, setCurrentCamera] = useState(null)
   const videoRef = useRef()
+
+  useEffect(() => {
+    if (capturarFoto === true) {
+      tomarFoto()
+    }
+  }, [capturarFoto])
 
   useEffect(() => {
     const getCameras = async () => {

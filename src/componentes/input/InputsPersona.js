@@ -30,6 +30,7 @@ export const InputsPersona = ({
   isLoading,
   data,
   responseBusqueda,
+  capturarFoto,
 }) => {
   const handleKeyPress = (event) => {
     setPersona({ ...PERSONA_MODEL })
@@ -58,7 +59,7 @@ export const InputsPersona = ({
           <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="demo-select-small-label">
-                Tipo Documento
+                Tipo de documento
               </InputLabel>
               <Select
                 size="small"
@@ -87,7 +88,7 @@ export const InputsPersona = ({
                 onKeyDown={handleKeyPress}
                 onChange={(e) => setBuscarDocumento(e.target.value)}
                 id="filled-search"
-                label={'Nro Documento'}
+                label={'N° de documento'}
                 type="number"
                 variant="outlined"
                 name={'nroDoc'}
@@ -130,7 +131,7 @@ export const InputsPersona = ({
           <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="demo-select-small-label">
-                Tipo Documento
+                Tipo de documento
               </InputLabel>
               <Select
                 size="small"
@@ -157,7 +158,7 @@ export const InputsPersona = ({
                 size="small"
                 name="nroDoc"
                 id="filled-search"
-                label="Nro Documento"
+                label="N° de documento"
                 type="text"
                 variant="outlined"
                 value={persona?.nroDoc}
@@ -172,7 +173,7 @@ export const InputsPersona = ({
                 size="small"
                 name="cip"
                 id="filled-search"
-                label="Nro CIP"
+                label="N° de CIP"
                 type="text"
                 variant="outlined"
                 value={persona?.cip}
@@ -202,7 +203,7 @@ export const InputsPersona = ({
                 size="small"
                 name="paterno"
                 id="filled-search"
-                label="Apellido Paterno"
+                label="Apellido paterno"
                 type="text"
                 variant="outlined"
                 value={persona?.paterno}
@@ -217,7 +218,7 @@ export const InputsPersona = ({
                 size="small"
                 name="materno"
                 id="filled-search"
-                label="Apellido Materno"
+                label="Apellido materno"
                 type="text"
                 variant="outlined"
                 value={persona?.materno}
@@ -235,6 +236,7 @@ export const InputsPersona = ({
                 setFotoTomada={setFotoTomada}
                 enlistado={enlistado}
                 data={data}
+                capturarFoto={capturarFoto}
               />
             </>
           ) : null}

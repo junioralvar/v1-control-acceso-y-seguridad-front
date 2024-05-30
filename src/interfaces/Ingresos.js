@@ -15,10 +15,8 @@ import Swal from 'sweetalert2'
 
 export const Ingresos = ({ checkedSwitch }) => {
   const { tokenVigente, setMostrarFoto, valuePuerta } = useGlobalState()
-
   const [checkedCamara, setCheckedCamara] = useState(false)
   const [checked, setChecked] = useState(false)
-
   const [checkedEsColegiado, setCheckedEsColegiado] = useState(false)
   const [checkedIngresoAutomatico, setCheckedIngresoAutomatico] = useState(true)
   const [controlPayload, setControlPayload] = useState()
@@ -44,6 +42,7 @@ export const Ingresos = ({ checkedSwitch }) => {
   const [isLoading, setIsLoading] = useState()
   const [data, setData] = useState()
   const [responseBusqueda, setResponseBusqueda] = useState('')
+  const [capturarFoto, setCapturarFoto] = useState(false)
 
   useEffect(() => {
     if (tipoDocumentoId === 1 && buscarDocumento.length === 8) {
@@ -68,7 +67,6 @@ export const Ingresos = ({ checkedSwitch }) => {
       setData()
     }
   }, [data, checkedSwitch])
-  console.log('buscarDocumento ', buscarDocumento)
 
   useEffect(() => {
     if (checkedSwitch) {
@@ -188,7 +186,7 @@ export const Ingresos = ({ checkedSwitch }) => {
       setEnlistado(data.enlistado)
 
       setPersona(data.persona)
-
+      setCapturarFoto(true)
       findAllHistorialDoc()
     } catch (error) {
       Swal.fire({
@@ -320,7 +318,7 @@ export const Ingresos = ({ checkedSwitch }) => {
         .finally(() => {
           setActivarCamara(false)
           setCheckedCamara(false)
-
+          setCapturarFoto(false)
           setBuscarDocumento('')
           setHistorialEncontrado(false)
           setInputsActivos([])
@@ -428,6 +426,8 @@ export const Ingresos = ({ checkedSwitch }) => {
               enlistado={enlistado}
               isLoading={isLoading}
               data={data}
+              capturarFoto={capturarFoto}
+              setCapturarFoto={setCapturarFoto}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={5}>
