@@ -9,8 +9,6 @@ COPY . .
 RUN npm install
 
 # Define las variables de entorno
-# ENV REACT_APP_API=http://172.16.93.83:8009/api/v1
-# ENV REACT_APP_WEB_SOCKET=ws://172.16.93.83:8009/websocket
 ENV REACT_APP_API=https://cas-backend.cdlima.org.pe/api/v1
 ENV REACT_APP_WEB_SOCKET=wss://cas-backend.cdlima.org.pe/websocket
 
@@ -43,4 +41,4 @@ EXPOSE 80
 EXPOSE 443
 
 # Comando para iniciar httpd
-CMD ["httpd-foreground","Cdlim@2022"]
+CMD ["httpd-foreground"]

@@ -449,7 +449,9 @@ export const Ingresos = ({ checkedSwitch }) => {
               handleInputActivoChange={handleInputActivoChange}
               tipoActivo={tipoActivo}
             />
+          </Grid>
 
+          <Grid item xs={12} className="mt-5">
             {idFuente === '3' ? (
               <>
                 {enlistado ? (
@@ -466,9 +468,6 @@ export const Ingresos = ({ checkedSwitch }) => {
             ) : (
               <></>
             )}
-          </Grid>
-
-          <Grid item xs={12} className="mt-5">
             {historialEncontrado ? (
               <Historial persona={historialPersona} />
             ) : (
