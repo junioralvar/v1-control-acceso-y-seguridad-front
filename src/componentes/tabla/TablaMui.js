@@ -32,6 +32,13 @@ export const TablaMui = ({ data }) => {
                       style={{ backgroundColor: '#2A3042', color: 'white' }}
                       className="text-center"
                     >
+                      Fotografía
+                    </TableCell>
+                    <TableCell
+                      scope="col"
+                      style={{ backgroundColor: '#2A3042', color: 'white' }}
+                      className="text-center"
+                    >
                       Persona
                     </TableCell>
                     <TableCell
@@ -77,6 +84,13 @@ export const TablaMui = ({ data }) => {
                           {element.control.tipoControlId === 1 ? (
                             <>
                               <Fotografia uuid={element.control.fotografia} />
+                            </>
+                          ) : null}
+                        </TableCell>
+                        <TableCell className="text-center">
+                          {element.control.tipoControlId === 1 ? (
+                            <>
+                              {/* <Fotografia uuid={element.control.fotografia} /> */}
                               <p style={{ fontSize: '13px' }}>
                                 {element.persona.nombres +
                                   ' ' +
