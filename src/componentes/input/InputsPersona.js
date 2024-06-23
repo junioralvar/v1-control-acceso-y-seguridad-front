@@ -89,7 +89,7 @@ export const InputsPersona = ({
                 onChange={(e) => setBuscarDocumento(e.target.value)}
                 id="filled-search"
                 label={'N° de documento'}
-                type="number"
+                type="text"
                 variant="outlined"
                 name={'nroDoc'}
                 value={buscarDocumento}
@@ -103,11 +103,6 @@ export const InputsPersona = ({
                 color="info"
                 className="pt-2"
                 onClick={findAllPersonaDocumento}
-                disabled={
-                  buscarDocumento.length >= 8 && buscarDocumento.length <= 12
-                    ? false
-                    : true
-                }
               >
                 <PersonSearchIcon />
                 &nbsp;Buscar

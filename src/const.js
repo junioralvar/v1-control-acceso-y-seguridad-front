@@ -120,7 +120,7 @@ export const CONTROL_MODEL = {
   enlistado: true,
 }
 
-// DOCKERIZANDO 05-06-2024
+// DOCKERIZANDO 23-06-2024
 // docker build -t rjalvarez13/cas-front-prod:1.2.5 -f Dockerfile.prod .
 // docker build -t rjalvarez13/cas-front-test:1.2.5 -f Dockerfile.test .
 
