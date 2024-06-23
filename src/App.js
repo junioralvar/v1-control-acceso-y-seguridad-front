@@ -57,16 +57,13 @@ export const App = () => {
         nroDoc,
         pass,
       })
-
       setVerificado(true)
       setNombreUsuario(data.user)
       localStorage.setItem(
         'nombres',
         data.nombres + ' ' + data.paterno + ' ' + data.materno
       )
-
       localStorage.setItem('miToken', data.token)
-
       localStorage.setItem('usuarioId', data.id)
       localStorage.setItem('user', data.user)
       setCargando(false)

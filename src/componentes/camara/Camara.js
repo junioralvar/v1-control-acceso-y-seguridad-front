@@ -1,6 +1,8 @@
 import { Button } from '@mui/material'
 import React, { useEffect, useRef } from 'react'
 
+// ESTE NO ES
+
 export const MyCamara = () => {
   const videoRef = useRef(null)
   const canvasRef = useRef(null)
