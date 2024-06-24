@@ -36,7 +36,13 @@ export const CameraComponent = ({
         )
         setCameras(videoDevices)
         if (videoDevices.length > 0) {
-          setCurrentCamera(videoDevices[0].deviceId)
+          // Try to set the rear camera if available
+          const rearCamera = videoDevices.find((device) =>
+            device.label.toLowerCase().includes('back')
+          )
+          setCurrentCamera(
+            rearCamera ? rearCamera.deviceId : videoDevices[0].deviceId
+          )
         }
       } catch (error) {
         console.error('Error al enumerar dispositivos:', error)
@@ -45,7 +51,9 @@ export const CameraComponent = ({
 
     const requestCameraPermissions = async () => {
       try {
-        await navigator.mediaDevices.getUserMedia({ video: true })
+        await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { exact: 'environment' } },
+        })
         getCameras()
       } catch (error) {
         console.error('Permiso de cámara denegado:', error)
@@ -64,9 +72,10 @@ export const CameraComponent = ({
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
             video: {
-              deviceId: currentCamera,
+              deviceId: currentCamera ? { exact: currentCamera } : undefined,
               width: widthCamera,
               height: heightCamera,
+              facingMode: { exact: 'environment' },
             },
           })
           videoRef.current.srcObject = stream
