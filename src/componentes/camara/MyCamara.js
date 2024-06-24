@@ -36,13 +36,17 @@ export const CameraComponent = ({
         )
         setCameras(videoDevices)
         if (videoDevices.length > 0) {
-          // Try to set the rear camera if available
-          const rearCamera = videoDevices.find((device) =>
-            device.label.toLowerCase().includes('back')
-          )
-          setCurrentCamera(
-            rearCamera ? rearCamera.deviceId : videoDevices[0].deviceId
-          )
+          const isMobileDevice = /Mobi|Android/i.test(navigator.userAgent)
+          if (isMobileDevice) {
+            const rearCamera = videoDevices.find((device) =>
+              device.label.toLowerCase().includes('back')
+            )
+            setCurrentCamera(
+              rearCamera ? rearCamera.deviceId : videoDevices[0].deviceId
+            )
+          } else {
+            setCurrentCamera(videoDevices[0].deviceId)
+          }
         }
       } catch (error) {
         console.error('Error al enumerar dispositivos:', error)
@@ -52,7 +56,7 @@ export const CameraComponent = ({
     const requestCameraPermissions = async () => {
       try {
         await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: { exact: 'environment' } },
+          video: true,
         })
         getCameras()
       } catch (error) {
@@ -72,10 +76,9 @@ export const CameraComponent = ({
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
             video: {
-              deviceId: currentCamera ? { exact: currentCamera } : undefined,
+              deviceId: { exact: currentCamera },
               width: widthCamera,
               height: heightCamera,
-              facingMode: { exact: 'environment' },
             },
           })
           videoRef.current.srcObject = stream
